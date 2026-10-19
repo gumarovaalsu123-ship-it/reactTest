@@ -197,63 +197,7 @@ h3 {
 
 
 
-.newsletter {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 40px;
-  padding: 42px;
-  border-radius: 24px;
-  background: var(--green);
-  color: #fff;
-}
 
-.newsletter h2 {
-  margin-bottom: 12px;
-}
-
-.newsletter p {
-  margin-bottom: 0;
-  color: #d9e3d9;
-}
-
-.newsletter-form {
-  display: flex;
-  gap: 10px;
-}
-
-.input,
-.select {
-  width: 100%;
-  min-height: 48px;
-  padding: 12px 15px;
-  border: 1px solid #dce3da;
-  border-radius: 12px;
-  background: #fff;
-  color: var(--text);
-  outline: none;
-}
-
-.input:focus,
-.select:focus {
-  border-color: #6f9479;
-  box-shadow: 0 0 0 3px rgba(111, 148, 121, .15);
-}
-
-.newsletter .input {
-  border: 0;
-}
-
-.newsletter .btn {
-  flex-shrink: 0;
-  background: #e4ebd9;
-  color: var(--green-dark);
-  border-color: #e4ebd9;
-}
-
-.newsletter .btn:hover {
-  background: #fff;
-}
 
 .page-intro {
   padding: 54px 0 28px;
