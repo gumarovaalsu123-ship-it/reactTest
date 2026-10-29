@@ -2,10 +2,10 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import './App.css'
 import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
-import { Main } from './components/Main/Main';
-import { Cart } from './components/Cart/Cart';
-import { Catalog } from './components/Catalog/Catalog';
-import { Product } from './components/Product/Product';
+import { Main } from './pages/Main/Main';
+import { Cart } from './pages/Cart/Cart';
+import { Catalog } from './pages/Catalog/Catalog';
+import { Product } from './pages/Product/Product';
 
 export function App() {
   return (

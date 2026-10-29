@@ -10,13 +10,7 @@ export function Catalog() {
                     <p className={s.subtitle}>Подберите то, что подходит именно вам</p>
                 </header>
 
-                <div className={s.grid}>
-                    <CatalogCard/>
-                    <CatalogCard/>
-                    <CatalogCard/>
-                    <CatalogCard/>
-                    
-                </div>
+                <Catalog />
             </div>
         </section>
     )

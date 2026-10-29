@@ -1,3 +1,5 @@
+import './Cart.module.css'
+
 export function Cart() {
     return (
         <main>
