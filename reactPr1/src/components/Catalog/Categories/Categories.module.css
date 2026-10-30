@@ -1,0 +1,22 @@
+.categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 28px;
+}
+
+.chip {
+    padding: 9px 16px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: .9rem;
+    transition: .2s;
+}
+
+.chip:hover,
+.active {
+    background: var(--green-light);
+    border-color: var(--green-light);
+    color: var(--green);
+}

@@ -1,4 +1,5 @@
 import { Catalog as CatalogList } from '../../components/Catalog/Catalog';
+import { Categories } from '../../components/Catalog/Categories/Categories';
 import s from './Catalog.module.css';
 
 export function Catalog() {
@@ -39,12 +40,7 @@ export function Catalog() {
                     </select>
                 </div>
 
-                <div className={s.categories}>
-                    <a className={`${s.chip} ${s.active}`} href="#">Все товары</a>
-                    <a className={s.chip} href="#">Для начинающих</a>
-                    <a className={s.chip} href="#">Теневыносливые</a>
-                    <a className={s.chip} href="#">Горшки и кашпо</a>
-                </div>
+                <Categories/>
 
                 <CatalogList />
             </section>
