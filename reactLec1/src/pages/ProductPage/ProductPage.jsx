@@ -17,7 +17,7 @@ export function ProductPage() {
 
             const catRes = await fetch('http://localhost:3000/categories/'+productFromServer.categoryId);
             const categoryFromServer = await catRes.json();
-            setProduct(categoryFromServer);
+            setCategories(categoryFromServer);
         })()
     }, [id])
 
