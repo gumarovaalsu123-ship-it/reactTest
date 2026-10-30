@@ -1,23 +1,18 @@
 import s from './Categories.module.css';
 
-export function Categories() {
+export function Categories(props) {
     return (
         <div className={s.categories}>
-            <button className={`${s.chip} ${s.active}`} type="button">
-                Все товары
-            </button>
-
-            <button className={s.chip} type="button">
-                Для начинающих
-            </button>
-
-            <button className={s.chip} type="button">
-                Теневыносливые
-            </button>
-
-            <button className={s.chip} type="button">
-                Горшки и кашпо
-            </button>
+            {props.categories.map(category => (
+                <button
+                    key={category.id}
+                    className={`${s.chip} ${props.selectedCategory===Number(category.id) ? s.active : ''}`}
+                    type="button"
+                    onClick={() => props.onSelectedCategory(Number(category.id))}
+                >
+                    {category.name}
+                </button>
+            ))}
         </div>
     );
 }

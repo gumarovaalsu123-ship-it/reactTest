@@ -9,7 +9,7 @@ export function Header() {
                 <nav className={s.nav}>
                     <Link to="/">Главная</Link>
                     <Link to="/catalog">Каталог</Link>
-                    <Link to="/product">Продукт</Link>
+                    <Link to="/bebe">404</Link>
                 </nav>
                 <Link className={s.cart} to="/cart">Корзина · 0</Link>
             </div>

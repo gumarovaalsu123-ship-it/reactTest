@@ -1,41 +1,73 @@
 import s from './Product.module.css';
-import { Link } from 'react-router';
+import { Link, useParams } from 'react-router';
+import { useEffect, useState } from 'react';
 
 export function Product() {
+    const { id } = useParams();
+
+    const [product, setProduct] = useState({});
+    const [category, setCategory] = useState({});
+    const [error, setError] = useState('');
+
+    useEffect(() => {
+        (async function loadProduct() {
+            try {
+                const res = await fetch(`http://localhost:3000/products/${id}`);
+                if (!res.ok) {
+                    throw new Error(`Ошибка загрузки товара: ${res.status}`);
+                }
+                const data = await res.json();
+                setProduct(data);
+
+                const resCat = await fetch(`http://localhost:3000/categories/${data.categoryId}`);
+                if (!resCat.ok) {
+                    throw new Error(`Ошибка загрузки категории: ${resCat.status}`);
+                }
+                const dataCat = await resCat.json();
+                setCategory(dataCat);
+            } catch (error) {
+                setError(error.message)
+            }
+        })()
+
+    }, [id])
+
+    if (error) {
+        return <p>Ошибка: {error}</p>;
+    }
+
+    if (!product.id) {
+        return <p>Загрузка товара...</p>;
+    }
     return (
         <main>
             <div className={`container ${s.container}`}>
                 <div className={s.breadcrumbs}>
                     <Link to="/">Главная</Link> /{' '}
-                    <Link to="/catalog">Каталог</Link> / Монстера делициоза
+                    <Link to="/catalog">Каталог</Link> / {product.name}
                 </div>
 
                 <section className={s.detail}>
                     <div className={s.image}>
                         <img
-                            src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1100&q=90"
-                            alt="Монстера делициоза в горшке"
+                            src={product.image}
+                            alt={product.name}
                         />
                     </div>
 
                     <div className={s.copy}>
-                        <span className="eyebrow">Комнатные растения</span>
-                        <h1>Монстера делициоза</h1>
-                        <p className="muted">Артикул: GM-001 · В наличии</p>
+                        <span className="eyebrow">{category.name}</span>
+                        <h1>{product.name}</h1>
+                        <p className="muted">Артикул: {product.id} · В наличии</p>
 
-                        <div className={s.price}>1 890 ₽</div>
+                        <div className={s.price}>{product.price} ₽</div>
 
                         <p className={s.description}>
-                            Эффектное тропическое растение с крупными резными
-                            листьями. Монстера станет выразительным акцентом
-                            в гостиной, спальне или рабочем пространстве и
-                            добавит интерьеру природной свежести.
+                            {product.description}
                         </p>
 
                         <ul className={s.points}>
-                            <li>Высота растения: около 35–45 см</li>
-                            <li>Рассеянный свет без прямого солнца</li>
-                            <li>Полив после подсыхания верхнего слоя почвы</li>
+                            {product.features.map((feature, index) => (<li key={index}>{feature}</li>))}
                         </ul>
 
                         <div className={s.actions}>

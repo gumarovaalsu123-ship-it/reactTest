@@ -11,9 +11,9 @@
     "predeploy": "pnpm run build",
     "deploy": "gh-pages -d dist"
   },
-
   "dependencies": {
     "json-server": "1.0.0-beta.15",
+    "pnpm": "^12.16.1",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-router": "^8.5.1",
