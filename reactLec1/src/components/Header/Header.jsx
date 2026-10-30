@@ -1,40 +1,46 @@
-import s from './Header.module.css';
+import { Link } from 'react-router'
+import s from './Header.module.css'
+import {PATH} from '../../routing/Routing'
+
+//всё должно быть в одном классе
+//все теги должны быть закрыты
+//className вместо class
 
 export function Header() {
-    return (
-        <header className={s.header}>
-            <div className="container">
-                <div className={s.header__inner}>
-                    <a href="/" className={s.logo}>
-                        <span className={s.logoMark}>◆</span>
-                        <span className={s.logoText}>BrandName</span>
-                    </a>
+  return (
+    <header className={s.header}>
+      <div className="container">
+        <div className={s.header__inner}>
+          <Link to={PATH.Home} className={s.logo}>
+            <span className={s.logoMark}>◆</span>
+            <span className={s.logoText}>BrandName</span>
+          </Link>
 
-                    <nav className={s.nav} aria-label="Основная навигация">
-                        <ul className={s.navList}>
-                            <li>
-                                <a href="#" className={s.navLink}>
-                                    Главная
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className={s.navLink}>
-                                    Каталог
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className={s.navLink}>
-                                    Корзина
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+          <nav className={s.nav} aria-label="Основная навигация">
+            <ul className={s.navList}>
+              <li>
+                <Link to={PATH.Home} className={s.navLink}>
+                  Главная
+                </Link>
+              </li>
+              <li>
+                <Link to={PATH.Catalog} className={s.navLink}>
+                  Каталог
+                </Link>
+              </li>
+              <li>
+                <Link to='/cart' className={s.navLink}>
+                  Корзина
+                </Link>
+              </li>
+            </ul>
+          </nav>
 
-                    <a href="#contact" className={s.cta}>
-                        Связаться
-                    </a>
-                </div>
-            </div>
-        </header>
-    )
+          <a href="#contact" className={s.cta}>
+            Связаться
+          </a>
+        </div>
+      </div>
+    </header>
+  )
 }

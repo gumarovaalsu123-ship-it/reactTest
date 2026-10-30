@@ -1,16 +1,20 @@
 import { Catalog } from "../../components/Catalog/Catalog";
-import s from './CatalogPage.module.css'
+import { Categories } from "../../components/Categories/Categories";
+import s from './CatalogPage.module.css';
 
 
 export function CatalogPage() {
     return (
-        <div className={s.grid}>
-            <CatalogCard />
-            <CatalogCard />
-            <CatalogCard />
-            <CatalogCard />
-            <CatalogCard />
-            <CatalogCard />
-        </div>
+        <section className={s.catalog}>
+            <div className="container">
+                <header className={s.head}>
+                    <h2 className={s.title}>Каталог</h2>
+                    <p className={s.subtitle}>Подберите то, что подходит именно вам</p>
+                    <Categories/>
+                </header>
+
+                <Catalog />
+            </div>
+        </section>
     )
 }

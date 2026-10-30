@@ -1,18 +1,17 @@
-import s from './Catalog.module.css';
-import { CatalogCard } from './CatalogCard/CatalogCard';
+import { products } from '../../assets/data'
+import s from './Catalog.module.css'
+import { CatalogCard } from './CatalogCard/CatalogCard'
 
 export function Catalog() {
     return (
-        <section className={s.catalog}>
             <div className="container">
-                <header className={s.head}>
-                    <h2 className={s.title}>Каталог</h2>
-                    <p className={s.subtitle}>Подберите то, что подходит именно вам</p>
-                </header>
-
-                <Catalog />
+                <div className={s.grid}>
+                    {
+                       products.map((product)=>
+                            <CatalogCard key={product.id} product={product}/>
+                       ) 
+                    }
+                </div>
             </div>
-        </section>
     )
 }
-

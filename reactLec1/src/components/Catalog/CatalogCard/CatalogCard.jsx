@@ -1,23 +1,29 @@
-import s from './CatalogCard.module.css';
-export function CatalogCard() {
+import s from './CatalogCard.module.css'
+import { Link } from 'react-router'
+import { PATH } from '../../../routing/Routing'
+
+export function CatalogCard({ product }) {
     return (
         <article className={s.card}>
             <div className={s.imageWrap}>
                 <img
-                    src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReEFzSZYEpBTCJxipv4WnYH5EOR9onyGdztDpo1oPbfIazJxt9dGCEHieq&s=10'}
+                    src={product.image}
                     alt="Товар 2"
                     className={s.image}
                     loading="lazy"
                 />
+
             </div>
             <div className={s.body}>
-                <h3 className={s.name}>Название товара</h3>
-                <p className={s.desc}>Короткое описание в одну строку</p>
+                <h3 className={s.name}>{product.title}</h3>
+                <p className={s.desc}>{product.description}</p>
                 <div className={s.footer}>
-                    <span className={s.price}>2 490 ₽</span>
-                    <button className={s.buy} type="button">
-                        Купить
-                    </button>
+                    <span className={s.price}>{product.price} ₽</span>
+                    <Link to={`/product/${product.id}`}>
+                        <button className={s.buy} type="button">
+                            Купить
+                        </button>
+                    </Link>
                 </div>
             </div>
         </article>
