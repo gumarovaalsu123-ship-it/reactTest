@@ -1,11 +1,25 @@
+import s from './Footer.module.css';
+import { Link } from 'react-router';
+
 export function Footer() {
     return (
-        <footer className="site-footer">
-            <div className="container footer-inner">
-                <div><a className="logo" href="index.html">green<span>mood.</span></a><p>Растения для дома и хорошего настроения.</p></div>
-                <div className="footer-links"><a href="index.html">Главная</a><a href="catalog.html">Каталог</a><a href="cart.html">Корзина</a></div>
+        <footer className={s.footer}>
+            <div className={`container ${s.inner}`}>
+                <div>
+                    <Link className={s.logo} to="/">
+                        green<span>mood.</span>
+                    </Link>
+                    <p>Растения для дома и хорошего настроения.</p>
+                </div>
+
+                <div className={s.links}>
+                    <Link to="/">Главная</Link>
+                    <Link to="/catalog">Каталог</Link>
+                    <Link to="/cart">Корзина</Link>
+                </div>
+
                 <p>© 2026 Green Mood</p>
             </div>
         </footer>
-    )
+    );
 }

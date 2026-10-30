@@ -1,4 +1,5 @@
 import s from './Hero.module.css';
+import { Link, NavLink } from 'react-router';
 
 export function Hero() {
     return (
@@ -19,9 +20,9 @@ export function Hero() {
                             пространство уютнее. Найдите своего зелёного любимца.
                         </p>
 
-                        <a className="btn" href="catalog.html">
+                        <Link className="btn" to="/catalog">
                             Перейти в каталог <span aria-hidden="true">↗</span>
-                        </a>
+                        </Link>
                     </div>
 
                     <div className={s.heroImage}>
