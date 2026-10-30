@@ -6,30 +6,15 @@ import { Main } from './pages/Main/Main';
 import { Cart } from './pages/Cart/Cart';
 import { Catalog } from './pages/Catalog/Catalog';
 import { Product } from './pages/Product/Product';
+import { Routing } from './routing/Routing';
 
-export const PATH = {
-    Home: '/',
-    Catalog: '/catalog',
-    Cart: '/cart',
-    Product: '/product/:id',
-    NotFound: '*'
-}
 
 export function App() {
   return (
-    <BrowserRouter>
-      < Header />
-
-      <Routes>
-        <Route path={PATH.Home} element={<Main />} />
-        <Route path={PATH.Catalog} element={<Catalog />} />
-        <Route path={PATH.Cart} element={<Cart />} />
-        <Route path={PATH.Product} element={<Product />} />
-        <Route path={PATH.NotFound} element={none} />
-      </Routes>
-
-      < Footer />
-    </ BrowserRouter >
-
+      <div className="layout">
+        <Header />
+        <Routing />
+        <Footer />
+      </div>
   )
 }
