@@ -9,14 +9,14 @@ export function Catalog() {
 
     useEffect(() => {
         (async function loadProducts() {
-            try{
+            try {
                 const res = await fetch('http://localhost:3000/products');
-                if(!res.ok){
+                if (!res.ok) {
                     throw new Error(`Ошибка загрузки: ${res.status}`);
                 }
                 const data = await res.json();
                 setProducts(data);
-            }catch(error){
+            } catch (error) {
                 setError(error.message);
             }
         })()
@@ -24,23 +24,37 @@ export function Catalog() {
 
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState(1);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [sortOrder, setSortOrder] = useState('');
     const [errorCat, setErrorCat] = useState('');
     useEffect(() => {
         (async function loadCategory() {
-            try{
+            try {
                 const res = await fetch('http://localhost:3000/categories');
-                if(!res.ok){
+                if (!res.ok) {
                     throw new Error(`Ошибка загрузки: ${res.status}`);
                 }
                 const data = await res.json();
                 setCategories(data);
-            }catch(error){
+            } catch (error) {
                 setErrorCat(error.message);
             }
         })()
     }, [])
 
-    const filteredProducts = selectedCategory === 1 ? products : products.filter(products => Number(products.categoryId) === selectedCategory)
+    const filteredProducts = products
+        .filter(product => selectedCategory === 1 || Number(product.categoryId) === selectedCategory)
+        .filter(product => product.name.trim().toLowerCase().includes(searchQuery.toLowerCase().trim()))
+        .sort((a, b) => {
+            if (sortOrder === 'asc') {
+                return a.price - b.price;
+            }
+            if (sortOrder === 'desc') {
+                return b.price - a.price;
+            }
+            return 0;
+            
+        })
 
     if (error) {
         return <p>Ошибка: {error}</p>;
@@ -57,7 +71,7 @@ export function Catalog() {
             </div>
 
             <section className={`container ${s.catalog}`}>
-                {/* <div className={s.toolbar}>
+                <div className={s.toolbar}>
                     <label className={s.search}>
                         <span className={s.searchIcon}>⌕</span>
                         <input
@@ -65,25 +79,20 @@ export function Catalog() {
                             type="search"
                             placeholder="Поиск по товарам"
                             aria-label="Поиск по товарам"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
                         />
                     </label>
 
-                    <select className={s.select} aria-label="Категория">
-                        <option>Все категории</option>
-                        <option>Растения</option>
-                        <option>Горшки</option>
-                        <option>Аксессуары</option>
-                    </select>
-
-                    <select className={s.select} aria-label="Сортировка по цене">
+                    <select className={s.select} aria-label="Сортировка по цене" value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
                         <option>Сначала популярные</option>
-                        <option>Сначала дешевле</option>
-                        <option>Сначала дороже</option>
+                        <option value='asc'>Сначала дешевле</option>
+                        <option value='desc'>Сначала дороже</option>
                     </select>
-                </div> */}
+                </div>
 
                 <Categories
-                    categories = {categories}
+                    categories={categories}
                     selectedCategory={selectedCategory}
                     onSelectedCategory={setSelectedCategory}
                 />

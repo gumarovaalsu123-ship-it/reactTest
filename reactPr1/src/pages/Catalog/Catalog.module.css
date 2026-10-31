@@ -34,7 +34,7 @@
 
 .input,
 .select {
-    width: 100%;
+    width: 30%;
     padding: 13px 16px;
     border: 1px solid var(--line);
     border-radius: 12px;
